@@ -1,0 +1,57 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  /* 去除移动端点击高亮样式 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  background-color: var(--app-color-page);
+  transition: background-color 0.3s;
+
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #117CEE;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #116fd4;
+}
+
+ul,ol {
+  list-style: none;
+}
+
+/* 输入框样式，去除清除按钮 */
+input {
+  font-size: 16px;
+  appearance: none;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-clear-button {
+  -webkit-appearance: none;
+}
+
+/* 更改 NProgress 进度条样式 */
+#nprogress {
+  position: absolute;
+  z-index: 1000;
+}
+#nprogress .bar {
+  background: var(--app-color-theme);
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px var(--app-color-theme), 0 0 5px var(--app-color-theme);
+}

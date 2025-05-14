@@ -1,0 +1,1 @@
+{"version":3,"file":"hostService.js","sourceRoot":"","sources":["hostService.ts"],"names":[],"mappings":"AAAA,OAAO,GAAG,MAAM,kBAAkB,CAAA;AAClC,eAAe;IACX,eAAe,CAAC,MAAW;QACvB,OAAO,GAAG,CAAC,IAAI,CAAC,oBAAoB,EAAE,MAAM,CAAC,CAAA;IACjD,CAAC;CAIJ,CAAA"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"tableService.js","sourceRoot":"","sources":["tableService.ts"],"names":[],"mappings":"AAAA,OAAO,GAAG,MAAM,kBAAkB,CAAA;AAClC,eAAe;IACX,UAAU,CAAC,MAAW;QAClB,OAAO,GAAG,CAAC,IAAI,CAAC,eAAe,EAAE,MAAM,CAAC,CAAA;IAC5C,CAAC;CACJ,CAAA"}

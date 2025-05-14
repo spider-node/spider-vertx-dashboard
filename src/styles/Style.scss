@@ -1,0 +1,80 @@
+/* 鼠标滑过样式块 */
+.__hover {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 38px;
+ height: 38px;
+ border-radius: 50%;
+ transition: all 0.2s;
+ cursor: pointer;
+}
+.__hover-square {
+ @extend .__hover;
+ width: 36px;
+ height: 36px;
+ border-radius: 8px;
+}
+.__hover:hover {
+ background: var(--app-color-hover);
+}
+.box {
+ height: 100%;
+ .title {
+  background: #fff;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  .titleForm {
+   margin-left: auto;
+   .el-form-item {
+    margin-bottom: 0;
+   }
+  }
+  //el-select 靠最右边展示
+  .select {
+   margin-left: auto;
+  }
+ }
+ .content {
+  background: #fff;
+  height: calc(100% - 87px);
+  margin: 10px 20px;
+  padding: 20px;
+  overflow-y: auto;
+ }
+}
+.formSelect {
+ width: 167.5px !important;
+}
+.searchForm {
+ padding: 20px;
+}
+.paginationBox {
+ margin-top: 20px;
+ display: flex;
+ justify-content: flex-end;
+}
+.icon-custom.select-data {
+ position: relative;
+ width: 22px;
+ height: 22px;
+ background-size: cover;
+ background-image: url('../assets/images/edit.png');
+}
+.icon-custom.select-data::after {
+ font-size: 12px;
+ position: absolute;
+ top: 17px;
+ left: 0;
+}
+
+/* 自定义 contextPad 的样式 */
+.djs-context-pad .select-data.entry:hover {
+ width: 22px;
+ height: 22px;
+ background: url('../assets/images/edit.png') center no-repeat !important;
+ opacity: 0.8;
+ background-size: cover !important;
+}

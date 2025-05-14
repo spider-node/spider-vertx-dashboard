@@ -1,0 +1,33 @@
+/* 浅色主题颜色变量 */
+:root {
+  color-scheme: light;
+  --app-color-theme: #337aff;      /* 全局主题颜色 */
+  --app-color-page: #F9FAFB;       /* 页面背景色 */
+  --app-color-light: #FFFFFF;      /* 亮色颜色 */
+  --app-color-dark: #010101;       /* 深色颜色 */
+  /* 文本颜色 */
+  --app-color-text-1: #303030;
+  --app-color-text-2: #4f4f54;
+  --app-color-text-3: #acadb7;
+  --app-color-text-4: #26273680;
+  /* 边框颜色 */
+  --app-color-border: #ebecf4;
+  /* 鼠标滑过颜色 */
+  --app-color-hover: #e6e7e9;
+  /* 阴影颜色 */
+  --app-box-shadow: 0 5px 16px -4px #2c2d300a;
+  /* 不同级别颜色 */
+  --app-color-primary: #337aff;
+  --app-color-success: #44c26a;
+  --app-color-warning: #ff952c;
+  --app-color-danger: #ff5757;
+}
+
+/* 深色主题颜色变量 */
+[data-theme="dark"] {
+  color-scheme: dark !important;
+  /* 主题色 */
+  --app-color-theme: #337aff;
+  /* 页面背景色 */
+  --app-color-page: #0D0E11;
+}

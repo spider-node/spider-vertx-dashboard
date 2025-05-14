@@ -1,0 +1,1 @@
+{"version":3,"file":"BpmnDesignerUtils.js","sourceRoot":"","sources":["BpmnDesignerUtils.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,4BAA4B,CAAA;AAGlD,MAAM,UAAU,cAAc,CAAC,OAAiB;IAC9C,OAAO,CACL,CAAC,OAAO;QACR,KAAK,CAAC,OAAO,EAAE,CAAC,cAAc,EAAE,oBAAoB,EAAE,kBAAkB,EAAE,iBAAiB,CAAC,CAAC,CAC9F,CAAA;AACH,CAAC"}

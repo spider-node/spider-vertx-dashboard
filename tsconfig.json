@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "strictBindCallApply": false,
+    "sourceMap": false, // 启用 sourceMap 自动生成 .js.map 文件
+    "skipLibCheck": false,
+    "target": "ESNext",
+    "module": "ESNext",
+    "strict": false, // 建议开启严格模式以捕获更多类型问题
+    "suppressImplicitAnyIndexErrors": true, // 抑制隐式的 any 类型索引错误
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+
+    "types": [
+      "node", "vue", "axios"
+    ],
+    "isolatedModules": false,
+    "paths": {
+      "@/*": ["src/*"],
+      "types/*": ["types/*"] // 确认类型路径
+    },
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable",
+      "ScriptHost",
+      "ES2015"
+    ],
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "composite": false,
+    "allowJs": true, // 允许编译 JS 文件[3](@ref)
+    "checkJs": false, // 关闭对 JS 文件的严格检查
+    "outDir": "./dist", // 避免编译文件与原文件混杂
+  }
+}
