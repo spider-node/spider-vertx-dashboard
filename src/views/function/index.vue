@@ -32,9 +32,9 @@
         <el-tab-pane label="日志" name="four">
           <RunTimeLog></RunTimeLog>
         </el-tab-pane>
-        <el-tab-pane label="框架" name="five">
+<!--        <el-tab-pane label="框架" name="five">
           <Framework></Framework>
-        </el-tab-pane>
+        </el-tab-pane>-->
         <el-tab-pane label="http应用" name="six">
           <HttpFunction></HttpFunction>
         </el-tab-pane>

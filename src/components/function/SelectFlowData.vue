@@ -103,7 +103,7 @@ const dialogVisible = ref(false)
 
 const formInline = ref({})
 const onSubmit = () => {
-  getAreaList()
+  //getAreaList()
 }
 
 const reset = () => {
@@ -113,7 +113,7 @@ const reset = () => {
     total: 0
   }
   formInline.value = {}
-  getAreaList()
+  //getAreaList()
 }
 
 onMounted(() => {

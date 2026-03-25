@@ -305,8 +305,13 @@ const showJsFunction = () => {
   }
   businessFunctionVersionService.queryBusinessFunctionPage(param).then(res => {
     let version: FunctionVersion = res.versions[0]
-    nodeParamConfigList.value = version.nodeParamInfo.nodeParamConfigList
-    jsFunctionDialogVisible.value = true
+    if(version.nodeParamInfo){
+      nodeParamConfigList.value = version.nodeParamInfo.nodeParamConfigList
+      jsFunctionDialogVisible.value = true
+      return
+    }
+    ElMessage.info("没有参数配置")
+
   })
 }
 

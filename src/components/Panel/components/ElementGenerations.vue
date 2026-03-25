@@ -135,7 +135,7 @@ export default defineComponent({
       if (this.isProcess) {
         this.elementExecutable = getProcessExecutable(this.getActive as Element)
         this.elementVersion = getProcessVersionTag(this.getActive as Element) || ''
-        this.startEventId = this.getStartEventId() // 获取 startEvent 的 id
+        //this.startEventId = this.getStartEventId() // 获取 startEvent 的 id
       }
     },
 

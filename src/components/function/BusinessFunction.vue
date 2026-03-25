@@ -156,7 +156,7 @@ const editBusiness = (row: BusinessFunction) => {
 
 const cancelEdit = () => {
   showEditBusiness.value = false
-  selectBusinessFunction.value = {}
+  selectBusinessFunction.value = {} as BusinessFunction
   queryFunction()
 }
 

@@ -812,8 +812,11 @@ const initGraph = () => {
           graphs.value.resetCells(cells.value)
           sonAreaIds.value = sonAreaIds.value.filter(item => item !== cell.id)*/
           // return
+
           let parentNode: Node = parentNodeMapValue.get(node.getParentId())
-          parentNode.removeChild(cell)
+          if(parentNode){
+            parentNode.removeChild(cell)
+          }
           graphs.value.removeNode(cell.id)
         }
       },
@@ -830,14 +833,9 @@ const initGraph = () => {
         args: {
           distance: 20,
           onClick: ({cell}) => {
-            console.log("",cell)
-            /!*cells.value = cells.value.filter(item => item.id !== cell.id)
-            graphs.value.resetCells(cells.value)
-            sonAreaIds.value = sonAreaIds.value.filter(item => item !== cell.id)*!/
-            // graphs.value如何通过
-            graphs.value.removeNode(cell.id)
-            let parentNode: Node = parentNodeMapValue.get(cell.id)
+            let parentNode: Node = parentNodeMapValue.get(node.getParentId())
             parentNode.removeChild(cell)
+            graphs.value.removeNode(cell.id)
             // return
           }
         },

@@ -19,7 +19,7 @@ import flowService from "@/api/flow/flowService";
 
 const props = defineProps({
   flowId: {
-    type: Object,
+    type: Number,
     default: ''
   }
 })

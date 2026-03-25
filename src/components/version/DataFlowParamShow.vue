@@ -59,21 +59,21 @@
 <!-- 首页 -->
 <script setup lang="ts">
 import {onMounted, ref, watch} from 'vue';
-import {Graph, Shape} from '@antv/x6'
+import {Graph, Node, Shape} from '@antv/x6'
 import {ElMessage} from 'element-plus';
 import flowService from "@/api/flow/flowService.ts";
 const emit = defineEmits(['selectedFlowDataField']);
 
 const props = defineProps({
   flowId: {
-    type: Object,
-    default: null
+    type: Number,
+    default: 0
   }
 })
 
 const searchSonDomainFrom = ref({})
 
-const id = ref('')
+const id = ref<number>(0)
 const sonList = ref([])
 const container = ref<HTMLElement>();
 const formInline = ref({})
@@ -183,7 +183,7 @@ const openDataDesc = () => {
   showDataDesc.value = true
 }
 
-const graphs = ref('')
+const graphs = ref<Graph>({} as Graph)
 const initGraph = () => {
   const LINE_HEIGHT = 24
   const NODE_WIDTH = 150
@@ -267,6 +267,34 @@ const initGraph = () => {
             angle: 0,
           }
         })
+      },
+      true,
+  )
+
+  Graph.registerNode(
+      'custom-group-node',
+      {
+        inherit: 'rect',
+        width: 80,
+        height: 40,
+        attrs: {
+          body: {
+            stroke: '#8f8f8f',
+            strokeWidth: 1,
+            fill: '#fff',
+            rx: 6,
+            ry: 6,
+          },
+          label: {
+            fill: '#333',
+            fontSize: 25,
+            fontWeight: 'bold',
+            refX: 0.5,         // 水平居中（相对于 body）
+            refY: -0.5,        // 垂直方向放在 body 上方
+            textAnchor: 'middle',  // 文本水平居中
+            textVerticalAnchor: 'bottom', // 文本垂直底部对齐（即贴着 body 的上方）
+          }
+        },
       },
       true,
   )
@@ -466,7 +494,10 @@ const initNode = (x, y, name, data, id) => {
   },))
   graphs.value.resetCells(cells.value)
 }
+let parentNodeMapValue: Map<string, Node> = new Map()
 
+// 使用 const 创建一个set数组
+let parentNodeSet: Set<string> = new Set()
 const flowDataDescs = ref([])
 
 const flowDetail = ref({})
@@ -477,25 +508,44 @@ const getFlowDetail = async () => {
   let res = await flowService.queryFlowData(data)
   console.log('res', res)
   flowDetail.value = res
-  flowDataDescs.value = JSON.parse(res.flowDataDesc)
   sonAreaIds.value = JSON.parse(res.sonAreaIds)
-  let tempCell = []
-  let tempLine = []
+  let parentTempCell = []
+  let childTempCell = []
   res.data.cells.forEach(item => {
-    if (item.shape === 'er-rect') {
-      tempCell.push(item)
-      cells.value.push(graphs.value.createNode(item))
+    if (item.shape === 'custom-group-node') {
+      parentTempCell.push(item)
     } else {
-      tempLine.push(item)
-      cells.value.push(graphs.value.createEdge(item))
+      childTempCell.push(item)
     }
   })
-  formInline.value = {
-    flowDataName: res.flowDataName,
-    flowDataDesc: res.flowDataDesc,
-  }
-  console.log(cells.value, 'cells')
-  graphs.value.resetCells(cells.value)
+  // 获取到 res.data.cells 中 item.shape === 'er-parent'的数据
+  parentTempCell.forEach(item => {
+    item.children = []
+    let parentNode: Node = graphs.value.createNode(item)
+    graphs.value.addNode(parentNode)
+    // 将 item.id 转为string
+    let itemId = item.id.toString()
+    parentNodeMapValue.set(itemId, parentNode)
+    parentNodeSet.add(itemId)
+  })
+  console.log("===size==", childTempCell.length)
+  childTempCell.forEach(item => {
+    if (item.shape === 'er-rect') {
+      // 移除 item中的parent
+      let parentId = item.parent.toString()
+      let parentNodes: Node = parentNodeMapValue.get(parentId)
+      item.parent = ''
+      let child: Node = graphs.value.createNode(item)
+      graphs.value.addNode(child)
+      parentNodes.addChild(child)
+      console.log("--INIT----", parentNodes.toJSON())
+      //parentNodeMapValue.set(parentNodes.id, parentNodes)
+      // cells.value.push(child)
+    } else {
+      graphs.value.addEdge(item)
+      //cells.value.push(graphs.value.createEdge(item))
+    }
+  })
 }
 
 onMounted(() => {
@@ -508,18 +558,6 @@ onMounted(() => {
   initGraph()
 })
 
-watch(
-    () => props.flowId,
-    (newVal) => {
-      id.value = newVal
-      console.log("新的id为", id.value)
-      if (id.value) {
-        getFlowDetail()
-      }
-      getSonArea()
-    },
-    {deep: true}
-);
 </script>
 <style lang="scss" scoped>
 .flex {

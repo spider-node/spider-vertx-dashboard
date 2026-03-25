@@ -17,16 +17,16 @@
           <div class="from">
             <el-form :model="functionVersions" label-width="auto" style="max-width: 600px" v-if="flexible">
               <el-form-item label="名称">
-                <el-input v-model="functionVersion.functionName"></el-input>
+                <el-input v-model="functionVersions.functionName"></el-input>
               </el-form-item>
               <el-form-item label="版本">
-                <el-input v-model="functionVersion.version"></el-input>
+                <el-input v-model="functionVersions.version"></el-input>
               </el-form-item>
               <el-form-item label="数据流名称">
-                <el-input v-model="functionVersion.dataFlowName"></el-input>
+                <el-input v-model="functionVersions.dataFlowName"></el-input>
               </el-form-item>
               <el-form-item label="描述">
-                <el-input v-model="functionVersion.desc" type="textarea"></el-input>
+                <el-input v-model="functionVersions.desc" type="textarea"></el-input>
               </el-form-item>
             </el-form>
           </div>
@@ -229,7 +229,7 @@ const selectedDataFlow = (data: any) => {
 
 const props = defineProps({
   functionVersion: {
-    type: Object as PropType<FunctionVersion>,
+    type: Object,
     default: {}
   },
   functionId: {
@@ -237,7 +237,7 @@ const props = defineProps({
     default: ''
   },
   businessFunction: {
-    type: Object as PropType<BusinessFunction>,
+    type: Object,
     default: {}
   },
   showVersion: {
@@ -253,8 +253,8 @@ const props = defineProps({
 const isUpdate = toRef(props, 'isUpdate');
 let businessFunction: BusinessFunction = props.businessFunction
 const dialogVisible = toRef(props, 'showVersion');
-//const functionVersions = toRef(props, 'functionVersion');
-const functionVersions = ref<FunctionVersion>({} as FunctionVersion)
+const functionVersions = ref({})
+//const functionVersions = ref({})
 
 const aiParamCreate = () => {
   upsertFunctionVersion()
